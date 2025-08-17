@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.devsuperior.ds_meta_be.entities.Sales;
 import com.devsuperior.ds_meta_be.infrastructure.Properties;
 import com.devsuperior.ds_meta_be.repository.SalesRepository;
+import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
@@ -26,7 +27,10 @@ public class SmsService {
 		String msg = "O Vendedor " + sales.getSellerName() + " foi destaque em " + date
 		+ "com um total de R$ " + String.format("%.2f", sales.getAmount());
 
-		//Twilio.init(twilioSid, twilioKey);
+		String twilioSid = properties.getTwilio().getSid();
+		String twilioKey = properties.getTwilio().getKey();
+		
+		Twilio.init(twilioSid, twilioKey);
 
 		PhoneNumber to = new PhoneNumber(properties.getTwilio().getPhone().getTo());
 		PhoneNumber from = new PhoneNumber(properties.getTwilio().getPhone().getFrom());

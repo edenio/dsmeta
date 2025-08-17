@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
+    url: ${H2_URL}
+    username: ${H2_USERNAME}
     password: 
 
   h2:
@@ -17,7 +17,7 @@ spring:
 
 twilio:
   sid: ${TWILIO_SID}
-  key: ${TWILIO_KEY}
+  key: ${AUTH_TOKEN}
   phone:
     from: ${TWILIO_PHONE_FROM}
     to: ${TWILIO_PHONE_TO}
